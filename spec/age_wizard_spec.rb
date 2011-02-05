@@ -23,6 +23,14 @@ describe "Using age_wizard" do
     AgeWizard::age(d1, Time.utc(2013, 10, 20), :months).should == 53
   end
 
+  it "should return correct age in days" do
+    d1 = Time.utc(2009, 05, 15)
+    AgeWizard::age(d1, Time.utc(2009, 05, 17), :days).should == 2
+    AgeWizard::age(d1, Time.utc(2009, 06, 17), :days).should == 33
+    AgeWizard::age(d1, Time.utc(2010, 05, 15), :days).should == 365
+    AgeWizard::age(d1, Time.utc(2012, 05, 15), :days).should == 3*365 + 1 # Leap year
+  end
+
   it "should handle calculating from february 29" do
     d1 = Time.utc(2008, 02, 29)
     AgeWizard::age(d1, Time.utc(2008, 03, 28), :months).should == 0
@@ -35,5 +43,6 @@ describe "Using age_wizard" do
     AgeWizard::age(d1, Time.utc(2009, 03, 01), :months).should == 12
     AgeWizard::age(d1, Time.utc(2009, 03, 28), :months).should == 12
     AgeWizard::age(d1, Time.utc(2009, 03, 29), :months).should == 13
+    AgeWizard::age(d1, Time.utc(2008, 03, 29), :days  ).should == 29
   end
 end
