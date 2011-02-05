@@ -7,7 +7,11 @@ module AgeWizard
       year_diff
     when :months
       month_diff = year_diff * 12
-      month_diff -= 1 if d2.day < d1.day
+      if d2.day < d1.day
+        month_diff -= 1
+        month_diff += 12 if (d1.year != d2.year && year_diff == 0)
+        month_diff
+      end
       month_diff += d2.month - d1.month
     end
   end
