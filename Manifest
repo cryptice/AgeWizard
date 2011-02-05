@@ -1,0 +1,6 @@
+CHANGELOG
+Manifest
+README.rdoc
+Rakefile
+lib/age_wizard.rb
+spec/age_wizard_spec.rb
